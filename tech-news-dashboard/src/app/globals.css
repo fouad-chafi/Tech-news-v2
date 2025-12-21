@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #1a1f2e;
+  --foreground: #ffffff;
+  --card: #2a3142;
+  --text-secondary: #a0a4b8;
+  --accent: #5b7fff;
+}
+
+body {
+  background-color: #1a1f2e;
+  color: #ffffff;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2a3142;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a4252;
+  border-radius: 4px;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Container */
+@layer utilities {
+  .container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}

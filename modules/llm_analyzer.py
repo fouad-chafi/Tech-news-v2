@@ -128,11 +128,44 @@ Requirements:
 4. Filter: Set should_filter to true for ads, spam, irrelevant content, or inappropriate material
 5. Filter Reason: Explain why content is being filtered (only if should_filter is true)
 
+CRITICAL FILTERING RULES - Set should_filter = true for ANY of:
+- Biology, zoology, nature, evolution articles about animals/insects (ants, bees, etc.)
+- Medical/health articles not related to health tech
+- Pure scientific research without tech applications
+- Entertainment, celebrity news, sports, politics (unless tech policy)
+- General news, lifestyle, fashion, travel, food
+- Biology articles even if they mention "tech" in passing
+- Research papers about ants, insects, animals, plants
+- Content about biology, evolution, zoology, ecology
+- Reddit self-promotion threads, "Who's Hiring", job postings, collaboration requests
+- Meta threads, weekly threads, daily threads that are not actual news
+- Reddit threads with "[D]" (Discussion) that are just community posts without news
+- Any content that is primarily about self-promotion, hiring, or meta discussions
+
+ACCEPTABLE TECH CATEGORIES:
+- Software development, programming, web dev, mobile dev
+- AI/ML, data science, cybersecurity, cloud computing
+- Hardware, gadgets, electronics, IoT
+- DevOps, infrastructure, networking
+- Tech startups, business tech, funding
+- Open source, frameworks, libraries
+- Tech policy, digital rights, privacy
+- Gaming, VR/AR, metaverse (tech focus)
+- Blockchain, crypto (tech focus)
+- Tech tutorials, guides, how-tos
+
 Category guidelines:
 - Prefer existing categories when possible
 - Use tech-specific categories like "AI", "WEB", "DEV", "MOBILE", "CLOUD", etc.
 - Normalize category names (lowercase, no spaces unless necessary)
-- Filter out Reddit self-promotion, job postings, and non-tech content
+- When in doubt, filter it out if it's not clearly tech-related
+
+Examples of CONTENT TO FILTER:
+- "The evolution of ants and their social structure"
+- "Medical breakthrough: new cancer treatment"
+- "Climate change effects on wildlife"
+- "Political election results"
+- "Celebrity gossip and entertainment news"
 
 Respond with JSON only, no additional text.
 """
