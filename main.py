@@ -182,6 +182,19 @@ class TechNewsAggregator:
                 existing_categories = self.category_manager.get_all_categories()
                 initial_category_count = len(existing_categories)
 
+                # Pre-fetch all existing URLs to avoid duplicates
+                self.cli.console.print("[cyan]Pre-checking existing articles in database...")
+                existing_urls = set()
+                try:
+                    # Get all existing articles URLs (this is more efficient than checking one by one)
+                    all_articles = self.db_manager.client.table("articles").select("url").execute()
+                    for article in all_articles.data:
+                        existing_urls.add(article.get('url', ''))
+                    logger.info(f"Found {len(existing_urls)} existing articles to avoid duplicates")
+                except Exception as e:
+                    logger.error(f"Failed to fetch existing URLs: {e}")
+                    existing_urls = set()
+
                 for i, source in enumerate(enabled_sources):
                     try:
                         source_name = source.get('name', 'Unknown')
@@ -200,7 +213,8 @@ class TechNewsAggregator:
                             source_url,
                             max_articles,
                             source_name,
-                            default_image
+                            default_image,
+                            list(existing_urls)
                         )
 
                         results['articles_found'] += len(articles)
@@ -222,9 +236,10 @@ class TechNewsAggregator:
                         # Store articles in database
                         for article in analyzed_articles:
                             try:
-                                # Check if article already exists
-                                if self.db_manager.article_exists(article['url']):
-                                    continue
+                                # Note: Duplicate check is now done at RSS fetching level for efficiency
+                                # logger.debug(f"Processing article: {article['title'][:50]}...")
+                                # if self.db_manager.article_exists(article['url']):
+                                #     continue
 
                                 # Prepare article data for database
                                 article_data = {

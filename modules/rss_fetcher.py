@@ -93,11 +93,53 @@ class RSSFetcher:
 
         return normalized
 
-    def fetch_feed(self, rss_url: str, max_articles: int = 10, source_name: str = "", default_image_url: str = "") -> List[Dict[str, Any]]:
+    def _fetch_webpage_description(self, url: str) -> str:
+        """Fetch webpage and extract description from meta tags or content."""
+        try:
+            response = self.session.get(url, timeout=10)
+            if response.status_code != 200:
+                logger.debug(f"Failed to fetch webpage {url}: {response.status_code}")
+                return ""
+
+            content = response.text[:10000]  # Limit content size to avoid memory issues
+
+            # Try to extract meta description first
+            import re
+
+            # Meta description tag
+            meta_desc_match = re.search(r'<meta[^>]+name=[\'"]description[\'"][^>]+content=[\'"]([^\'"]+)[\'"]', content, re.IGNORECASE)
+            if meta_desc_match:
+                desc = meta_desc_match.group(1)
+                return self._clean_html(desc)
+
+            # Meta property description
+            meta_prop_match = re.search(r'<meta[^>]+property=[\'"]og:description[\'"][^>]+content=[\'"]([^\'"]+)[\'"]', content, re.IGNORECASE)
+            if meta_prop_match:
+                desc = meta_prop_match.group(1)
+                return self._clean_html(desc)
+
+            # Try to extract first paragraph as fallback
+            para_match = re.search(r'<p[^>]*>(.*?)</p>', content, re.IGNORECASE | re.DOTALL)
+            if para_match:
+                desc = para_match.group(1)
+                return self._clean_html(desc)
+
+            return ""
+
+        except Exception as e:
+            logger.debug(f"Error fetching webpage description for {url}: {e}")
+            return ""
+
+    def fetch_feed(self, rss_url: str, max_articles: int = 10, source_name: str = "", default_image_url: str = "", existing_urls: List[str] = None) -> List[Dict[str, Any]]:
         self._wait_for_rate_limit()
+
+        # Initialize existing URLs set for quick lookup
+        existing_urls_set = set(existing_urls) if existing_urls else set()
 
         try:
             logger.info(f"Fetching RSS feed: {rss_url}")
+            if existing_urls_set:
+                logger.info(f"Filtering {len(existing_urls_set)} known URLs")
 
             # Parse the feed
             feed = feedparser.parse(rss_url)
@@ -126,14 +168,33 @@ class RSSFetcher:
                     # Normalize URL
                     normalized_url = self._normalize_url(link)
 
-                    # Extract description
+                    # Early filtering: skip if URL already exists in database
+                    if normalized_url in existing_urls_set:
+                        logger.debug(f"Skipping existing URL: {normalized_url}")
+                        continue
+
+                    # Extract description from multiple possible sources
                     description = ''
+
+                    # Try content field first (most detailed)
                     if hasattr(entry, 'content') and entry.content:
                         description = self._clean_html(entry.content[0].value)
-                    elif hasattr(entry, 'summary'):
+
+                    # Try summary field (often used in RSS)
+                    elif hasattr(entry, 'summary') and entry.summary:
                         description = self._clean_html(entry.summary)
-                    elif hasattr(entry, 'description'):
+
+                    # Try description field
+                    elif hasattr(entry, 'description') and entry.description:
                         description = self._clean_html(entry.description)
+
+                    # If still empty, try subtitle field (Atom feeds)
+                    elif hasattr(entry, 'subtitle') and entry.subtitle:
+                        description = self._clean_html(entry.subtitle)
+
+                    # Last resort: try to get content from webpage (with timeout)
+                    if not description and hasattr(entry, 'link') and entry.link:
+                        description = self._fetch_webpage_description(entry.link)
 
                     # Limit description length
                     if len(description) > 500:
