@@ -1,102 +1,152 @@
-import os
-import requests
-from typing import Optional, List, Dict, Any
-from dotenv import load_dotenv
 import logging
+from typing import List, Dict, Any, Optional
+from supabase import create_client, Client
+from config import Config
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class DatabaseManager:
     def __init__(self):
-        load_dotenv()
+        self.client: Optional[Client] = None
+        self._connect()
 
-        self.supabase_url: str = os.getenv('SUPABASE_URL')
-        self.supabase_key: str = os.getenv('SUPABASE_SERVICE_KEY')
-
-        if not self.supabase_url or not self.supabase_key:
-            raise ValueError("Missing Supabase credentials in .env file")
-
-        self.headers = {
-            'apikey': self.supabase_key,
-            'Authorization': f'Bearer {self.supabase_key}',
-            'Content-Type': 'application/json'
-        }
+    def _connect(self) -> None:
+        try:
+            supabase_config = Config.get_supabase_config()
+            self.client = create_client(
+                supabase_config["url"],
+                supabase_config["service_key"]
+            )
+            logger.info("Connected to Supabase successfully")
+        except Exception as e:
+            logger.error(f"Failed to connect to Supabase: {e}")
+            raise
 
     def test_connection(self) -> bool:
         try:
-            url = f"{self.supabase_url}/rest/v1/"
-            response = requests.get(url, headers=self.headers)
-            if response.status_code == 200:
-                logger.info("Database connection test successful")
-                return True
-            else:
-                logger.error(f"Database connection test failed: {response.status_code}")
-                return False
+            response = self.client.table("sources").select("id").limit(1).execute()
+            return True
         except Exception as e:
             logger.error(f"Database connection test failed: {e}")
             return False
 
-    def get_categories(self) -> List[Dict[str, Any]]:
+    def get_enabled_sources(self) -> List[Dict[str, Any]]:
         try:
-            url = f"{self.supabase_url}/rest/v1/categories?select=*"
-            response = requests.get(url, headers=self.headers)
-            if response.status_code == 200:
-                return response.json()
-            else:
-                logger.error(f"Failed to get categories: {response.status_code}")
-                return []
+            response = self.client.table("sources").select("*").eq("enabled", True).execute()
+            return response.data
+        except Exception as e:
+            logger.error(f"Failed to get enabled sources: {e}")
+            return []
+
+    def get_all_categories(self) -> List[Dict[str, Any]]:
+        try:
+            response = self.client.table("categories").select("*").execute()
+            return response.data
         except Exception as e:
             logger.error(f"Failed to get categories: {e}")
             return []
 
+    def get_category_by_name(self, name: str) -> Optional[Dict[str, Any]]:
+        try:
+            response = self.client.table("categories").select("*").eq("name", name).execute()
+            if response.data:
+                return response.data[0]
+            return None
+        except Exception as e:
+            logger.error(f"Failed to get category by name {name}: {e}")
+            return None
+
     def create_category(self, name: str) -> Optional[Dict[str, Any]]:
         try:
-            url = f"{self.supabase_url}/rest/v1/categories"
-            data = {'name': name}
-            response = requests.post(url, headers=self.headers, json=data)
-            if response.status_code in [200, 201]:
-                logger.info(f"Created category: {name}")
-                return response.json()[0] if response.json() else None
-            else:
-                logger.error(f"Failed to create category {name}: {response.status_code}")
-                return None
+            response = self.client.table("categories").insert({"name": name}).execute()
+            if response.data:
+                return response.data[0]
+            return None
         except Exception as e:
             logger.error(f"Failed to create category {name}: {e}")
             return None
 
     def article_exists(self, url: str) -> bool:
         try:
-            request_url = f"{self.supabase_url}/rest/v1/articles?select=id&url=eq.{url}"
-            response = requests.get(request_url, headers=self.headers)
-            return len(response.json()) > 0 if response.status_code == 200 else False
+            response = self.client.table("articles").select("id").eq("url", url).execute()
+            return len(response.data) > 0
         except Exception as e:
-            logger.error(f"Failed to check if article exists: {e}")
+            logger.error(f"Failed to check if article exists {url}: {e}")
             return False
 
     def create_article(self, article_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         try:
-            url = f"{self.supabase_url}/rest/v1/articles"
-            response = requests.post(url, headers=self.headers, json=article_data)
-            if response.status_code in [200, 201]:
-                logger.info(f"Created article: {article_data.get('title', 'Unknown')}")
-                return response.json()[0] if response.json() else None
-            else:
-                logger.error(f"Failed to create article: {response.status_code}")
-                return None
+            response = self.client.table("articles").insert(article_data).execute()
+            if response.data:
+                return response.data[0]
+            return None
         except Exception as e:
             logger.error(f"Failed to create article: {e}")
             return None
 
-    def link_article_category(self, article_id: str, category_id: str) -> bool:
+    def link_article_to_categories(self, article_id: str, category_ids: List[str]) -> bool:
         try:
-            url = f"{self.supabase_url}/rest/v1/article_categories"
-            data = {
-                'article_id': article_id,
-                'category_id': category_id
-            }
-            response = requests.post(url, headers=self.headers, json=data)
-            return response.status_code in [200, 201]
+            links = [{"article_id": article_id, "category_id": cat_id} for cat_id in category_ids]
+            response = self.client.table("article_categories").insert(links).execute()
+            return len(response.data) == len(category_ids)
         except Exception as e:
-            logger.error(f"Failed to link article category: {e}")
+            logger.error(f"Failed to link article {article_id} to categories: {e}")
             return False
+
+    def get_sources_by_group(self) -> Dict[str, List[Dict[str, Any]]]:
+        try:
+            response = self.client.table("sources").select("*").execute()
+            grouped = {}
+            for source in response.data:
+                group = source.get("source_group", "OTHER")
+                if group not in grouped:
+                    grouped[group] = []
+                grouped[group].append(source)
+            return grouped
+        except Exception as e:
+            logger.error(f"Failed to get sources by group: {e}")
+            return {}
+
+    def update_source_status(self, source_id: str, enabled: bool) -> bool:
+        try:
+            response = self.client.table("sources").update({"enabled": enabled}).eq("id", source_id).execute()
+            return len(response.data) > 0
+        except Exception as e:
+            logger.error(f"Failed to update source status {source_id}: {e}")
+            return False
+
+    def update_source_max_articles(self, source_id: str, max_articles: int) -> bool:
+        try:
+            response = self.client.table("sources").update({"max_articles_per_fetch": max_articles}).eq("id", source_id).execute()
+            return len(response.data) > 0
+        except Exception as e:
+            logger.error(f"Failed to update source max articles {source_id}: {e}")
+            return False
+
+    def get_articles_count(self) -> Dict[str, int]:
+        try:
+            total_response = self.client.table("articles").select("id", count="exact").execute()
+            filtered_response = self.client.table("articles").select("id", count="exact").eq("filtered", True).execute()
+
+            return {
+                "total": total_response.count or 0,
+                "filtered": filtered_response.count or 0,
+                "active": (total_response.count or 0) - (filtered_response.count or 0)
+            }
+        except Exception as e:
+            logger.error(f"Failed to get articles count: {e}")
+            return {"total": 0, "filtered": 0, "active": 0}
+
+    def create_source_if_not_exists(self, source_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        try:
+            existing = self.client.table("sources").select("id").eq("name", source_data["name"]).execute()
+            if existing.data:
+                return existing.data[0]
+
+            response = self.client.table("sources").insert(source_data).execute()
+            if response.data:
+                return response.data[0]
+            return None
+        except Exception as e:
+            logger.error(f"Failed to create source {source_data.get('name', 'unknown')}: {e}")
+            return None
