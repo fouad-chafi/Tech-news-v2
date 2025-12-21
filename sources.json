@@ -1,0 +1,349 @@
+{
+  "groups": {
+    "AI_ML": {
+      "name": "AI & Machine Learning",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "rss_url": "https://openai.com/blog/rss/",
+          "default_image_url": "https://openai.com/favicon.ico"
+        },
+        {
+          "name": "Google AI Blog",
+          "rss_url": "https://ai.googleblog.com/feeds/posts/default",
+          "default_image_url": "https://ai.googleblog.com/favicon.ico"
+        },
+        {
+          "name": "DeepMind Blog",
+          "rss_url": "https://deepmind.google/blog/feed/",
+          "default_image_url": "https://deepmind.google/favicon.ico"
+        },
+        {
+          "name": "Microsoft AI Blog",
+          "rss_url": "https://blogs.microsoft.com/ai/category/ai/feed/",
+          "default_image_url": "https://blogs.microsoft.com/wp-content/themes/microsoft-blog/dist/assets/favicons/microsoft-blog.ico"
+        },
+        {
+          "name": "Meta AI Research",
+          "rss_url": "https://ai.facebook.com/blog/rss/",
+          "default_image_url": "https://ai.facebook.com/favicon.ico"
+        },
+        {
+          "name": "Anthropic News",
+          "rss_url": "https://www.anthropic.com/news/rss",
+          "default_image_url": "https://www.anthropic.com/favicon.ico"
+        },
+        {
+          "name": "Hugging Face Blog",
+          "rss_url": "https://huggingface.co/blog/feed.xml",
+          "default_image_url": "https://huggingface.co/favicon.ico"
+        },
+        {
+          "name": "TensorFlow Blog",
+          "rss_url": "https://blog.tensorflow.org/feeds/posts/default",
+          "default_image_url": "https://blog.tensorflow.org/favicon.ico"
+        },
+        {
+          "name": "AWS Machine Learning Blog",
+          "rss_url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+          "default_image_url": "https://aws.amazon.com/favicon.ico"
+        },
+        {
+          "name": "MIT News - Machine Learning",
+          "rss_url": "https://news.mit.edu/topic/machine-learning/feed",
+          "default_image_url": "https://news.mit.edu/favicon.ico"
+        }
+      ]
+    },
+    "DEV_GENERAL": {
+      "name": "Development General",
+      "sources": [
+        {
+          "name": "Stack Overflow Blog",
+          "rss_url": "https://stackoverflow.blog/feed/",
+          "default_image_url": "https://stackoverflow.com/favicon.ico"
+        },
+        {
+          "name": "DZone",
+          "rss_url": "https://dzone.com/feed",
+          "default_image_url": "https://dzone.com/themes/dzone20-theme/favicon.ico"
+        },
+        {
+          "name": "Dev.to",
+          "rss_url": "https://dev.to/feed",
+          "default_image_url": "https://dev.to/favicon.ico"
+        },
+        {
+          "name": "Hacker News",
+          "rss_url": "https://hnrss.org/frontpage",
+          "default_image_url": "https://news.ycombinator.com/favicon.ico"
+        },
+        {
+          "name": "FreeCodeCamp",
+          "rss_url": "https://www.freecodecamp.org/news/rss/",
+          "default_image_url": "https://www.freecodecamp.org/favicon.ico"
+        },
+        {
+          "name": "CodeProject",
+          "rss_url": "https://www.codeproject.com/WebServices/ArticleRSS.aspx",
+          "default_image_url": "https://www.codeproject.com/favicon.ico"
+        },
+        {
+          "name": "Smashing Magazine",
+          "rss_url": "https://www.smashingmagazine.com/feed/",
+          "default_image_url": "https://www.smashingmagazine.com/favicon.ico"
+        }
+      ]
+    },
+    "WEB_DEV": {
+      "name": "Web Development",
+      "sources": [
+        {
+          "name": "CSS-Tricks",
+          "rss_url": "https://css-tricks.com/feed/",
+          "default_image_url": "https://css-tricks.com/favicon.ico"
+        },
+        {
+          "name": "A List Apart",
+          "rss_url": "https://alistapart.com/main/feed/",
+          "default_image_url": "https://alistapart.com/favicon.ico"
+        },
+        {
+          "name": "SitePoint",
+          "rss_url": "https://www.sitepoint.com/feed/",
+          "default_image_url": "https://www.sitepoint.com/favicon.ico"
+        },
+        {
+          "name": "Web Platform Community",
+          "rss_url": "https://web.dev/rss.xml",
+          "default_image_url": "https://web.dev/favicon.ico"
+        },
+        {
+          "name": "JavaScript Weekly",
+          "rss_url": "https://javascriptweekly.com/rss",
+          "default_image_url": "https://javascriptweekly.com/favicon.ico"
+        },
+        {
+          "name": "React Blog",
+          "rss_url": "https://reactjs.org/blog/rss.xml",
+          "default_image_url": "https://reactjs.org/favicon.ico"
+        },
+        {
+          "name": "Vue.js News",
+          "rss_url": "https://news.vuejs.org/feed.xml",
+          "default_image_url": "https://news.vuejs.org/favicon.ico"
+        }
+      ]
+    },
+    "MOBILE_DEV": {
+      "name": "Mobile Development",
+      "sources": [
+        {
+          "name": "Android Developers Blog",
+          "rss_url": "https://android-developers.googleblog.com/feeds/posts/default",
+          "default_image_url": "https://android-developers.googleblog.com/favicon.ico"
+        },
+        {
+          "name": "Flutter Blog",
+          "rss_url": "https://medium.com/feed/flutter",
+          "default_image_url": "https://flutter.dev/favicon.ico"
+        },
+        {
+          "name": "React Native Blog",
+          "rss_url": "https://reactnative.dev/blog/rss.xml",
+          "default_image_url": "https://reactnative.dev/favicon.ico"
+        }
+      ]
+    },
+    "DEVOPS_CLOUD": {
+      "name": "DevOps & Cloud",
+      "sources": [
+        {
+          "name": "AWS News Blog",
+          "rss_url": "https://aws.amazon.com/blogs/aws/feed/",
+          "default_image_url": "https://aws.amazon.com/favicon.ico"
+        },
+        {
+          "name": "Google Cloud Blog",
+          "rss_url": "https://cloud.google.com/blog/rss",
+          "default_image_url": "https://cloud.google.com/favicon.ico"
+        },
+        {
+          "name": "Azure Blog",
+          "rss_url": "https://azure.microsoft.com/en-us/blog/feed/",
+          "default_image_url": "https://azure.microsoft.com/favicon.ico"
+        },
+        {
+          "name": "Kubernetes Blog",
+          "rss_url": "https://kubernetes.io/blog/feed/",
+          "default_image_url": "https://kubernetes.io/favicon.ico"
+        },
+        {
+          "name": "Docker Blog",
+          "rss_url": "https://www.docker.com/blog/feed/",
+          "default_image_url": "https://www.docker.com/favicon.ico"
+        },
+        {
+          "name": "HashiCorp Blog",
+          "rss_url": "https://www.hashicorp.com/blog/feed",
+          "default_image_url": "https://www.hashicorp.com/favicon.ico"
+        },
+        {
+          "name": "CNCF Blog",
+          "rss_url": "https://www.cncf.io/blog/feed/",
+          "default_image_url": "https://www.cncf.io/favicon.ico"
+        }
+      ]
+    },
+    "CYBERSECURITY": {
+      "name": "Cybersecurity",
+      "sources": [
+        {
+          "name": "Krebs on Security",
+          "rss_url": "https://krebsonsecurity.com/feed/",
+          "default_image_url": "https://krebsonsecurity.com/favicon.ico"
+        },
+        {
+          "name": "The Hacker News",
+          "rss_url": "https://thehackernews.com/feeds/posts/default",
+          "default_image_url": "https://thehackernews.com/favicon.ico"
+        },
+        {
+          "name": "Dark Reading",
+          "rss_url": "https://www.darkreading.com/rss.asp",
+          "default_image_url": "https://www.darkreading.com/favicon.ico"
+        },
+        {
+          "name": "SecurityWeek",
+          "rss_url": "https://www.securityweek.com/feed",
+          "default_image_url": "https://www.securityweek.com/favicon.ico"
+        },
+        {
+          "name": "Threatpost",
+          "rss_url": "https://threatpost.com/feed/",
+          "default_image_url": "https://threatpost.com/favicon.ico"
+        }
+      ]
+    },
+    "STARTUPS": {
+      "name": "Startups & Business Tech",
+      "sources": [
+        {
+          "name": "TechCrunch",
+          "rss_url": "https://techcrunch.com/feed/",
+          "default_image_url": "https://techcrunch.com/favicon.ico"
+        },
+        {
+          "name": "Product Hunt Blog",
+          "rss_url": "https://blog.producthunt.com/feed/",
+          "default_image_url": "https://blog.producthunt.com/favicon.ico"
+        },
+        {
+          "name": "Indie Hackers",
+          "rss_url": "https://indiehackers.com/feed",
+          "default_image_url": "https://indiehackers.com/favicon.ico"
+        },
+        {
+          "name": "Y Combinator Blog",
+          "rss_url": "https://www.ycombinator.com/blog/rss/",
+          "default_image_url": "https://www.ycombinator.com/favicon.ico"
+        },
+        {
+          "name": "First Round Review",
+          "rss_url": "https://review.firstround.com/rss",
+          "default_image_url": "https://review.firstround.com/favicon.ico"
+        },
+        {
+          "name": "a16z Blog",
+          "rss_url": "https://a16z.com/feed/",
+          "default_image_url": "https://a16z.com/favicon.ico"
+        }
+      ]
+    },
+    "REDDIT_TECH": {
+      "name": "Reddit Tech Communities",
+      "sources": [
+        {
+          "name": "r/programming",
+          "rss_url": "https://www.reddit.com/r/programming/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/MachineLearning",
+          "rss_url": "https://www.reddit.com/r/MachineLearning/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/artificial",
+          "rss_url": "https://www.reddit.com/r/artificial/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/webdev",
+          "rss_url": "https://www.reddit.com/r/webdev/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/javascript",
+          "rss_url": "https://www.reddit.com/r/javascript/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/python",
+          "rss_url": "https://www.reddit.com/r/python/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/devops",
+          "rss_url": "https://www.reddit.com/r/devops/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        },
+        {
+          "name": "r/datascience",
+          "rss_url": "https://www.reddit.com/r/datascience/.json",
+          "default_image_url": "https://www.reddit.com/favicon.ico"
+        }
+      ]
+    },
+    "NEWS_MAINSTREAM": {
+      "name": "Mainstream Tech News",
+      "sources": [
+        {
+          "name": "The Verge",
+          "rss_url": "https://www.theverge.com/rss/index.xml",
+          "default_image_url": "https://www.theverge.com/favicon.ico"
+        },
+        {
+          "name": "Wired",
+          "rss_url": "https://www.wired.com/feed/rss",
+          "default_image_url": "https://www.wired.com/favicon.ico"
+        },
+        {
+          "name": "Ars Technica",
+          "rss_url": "https://feeds.arstechnica.com/arstechnica/index",
+          "default_image_url": "https://arstechnica.com/favicon.ico"
+        },
+        {
+          "name": "Engadget",
+          "rss_url": "https://www.engadget.com/rss.xml",
+          "default_image_url": "https://www.engadget.com/favicon.ico"
+        },
+        {
+          "name": "ZDNet",
+          "rss_url": "https://www.zdnet.com/news/rss.xml",
+          "default_image_url": "https://www.zdnet.com/favicon.ico"
+        },
+        {
+          "name": "VentureBeat",
+          "rss_url": "https://venturebeat.com/feed/",
+          "default_image_url": "https://venturebeat.com/favicon.ico"
+        },
+        {
+          "name": "Slashdot",
+          "rss_url": "https://slashdot.org/slashdot.rss",
+          "default_image_url": "https://slashdot.org/favicon.ico"
+        }
+      ]
+    }
+  }
+}
