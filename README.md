@@ -50,8 +50,8 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 
 ### 🖥️ Vue d'Ensemble du Dashboard
 
-**[📸 SCREENSHOT À AJOUTER ICI : Vue complète du dashboard avec grilles d'articles]**
-*Emplacement : `screenshots/dashboard-full-view.png`*
+<img width="2112" height="1213" alt="image" src="https://github.com/user-attachments/assets/943df72f-acf1-4cd4-a76e-211587d17c8a" />
+
 
 **Description :** Le dashboard affiche une grille responsive d'articles avec :
 - **Header** avec barre de recherche
@@ -63,8 +63,8 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 
 ### 📱 Carte Article
 
-**[📸 SCREENSHOT À AJOUTER ICI : Détail d'une carte article avec toutes ses informations]**
-*Emplacement : `screenshots/article-card-detail.png`*
+<img width="1563" height="527" alt="image" src="https://github.com/user-attachments/assets/4a7b24e1-3bfd-4e4c-9fea-85bf9764f245" />
+
 
 **Composants visibles :**
 - Image de l'article (avec fallback si manquante)
@@ -78,8 +78,8 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 
 ### 🔍 Filtres par Catégories
 
-**[📸 SCREENSHOT À AJOUTER ICI : Section des filtres catégories avec tags cliquables]**
-*Emplacement : `screenshots/category-filters.png`*
+<img width="1583" height="1224" alt="image" src="https://github.com/user-attachments/assets/a77f4d70-02cf-4594-84f6-4905b2038b4c" />
+
 
 **Fonctionnalités :**
 - Tags cliquables pour chaque catégorie
@@ -92,8 +92,8 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 
 ### 📱 Version Mobile
 
-**[📸 SCREENSHOT À AJOUTER ICI : Interface responsive sur smartphone]**
-*Emplacement : `screenshots/mobile-responsive-view.png`*
+<img width="933" height="1131" alt="image" src="https://github.com/user-attachments/assets/ca040fbb-0caa-4a43-965e-d3d5d976b2f0" />
+
 
 **Adaptations mobiles :**
 - Navigation simplifiée
@@ -105,9 +105,6 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 ---
 
 ### 🌙 Thème Sombre Professionnel
-
-**[📸 SCREENSHOT À AJOUTER ICI : Palette de couleurs et thème sombre]**
-*Emplacement : `screenshots/dark-theme-showcase.png`*
 
 **Palette de couleurs :**
 ```css
@@ -124,8 +121,8 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 
 ### 📊 Schéma Supabase
 
-**[📸 SCREENSHOT À AJOUTER ICI : Schema ERD dans Supabase]**
-*Emplacement : `screenshots/supabase-schema-erd.png`*
+<img width="1560" height="924" alt="image" src="https://github.com/user-attachments/assets/8812d8e2-66b6-4227-9aa8-e00a5c62090b" />
+
 
 **Tables principales :**
 
@@ -177,9 +174,7 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 ---
 
 ### 🔍 Interface Supabase
-
-**[📸 SCREENSHOT À AJOUTER ICI : Table Editor Supabase]**
-*Emplacement : `screenshots/supabase-table-editor.png`*
+<img width="2452" height="756" alt="image" src="https://github.com/user-attachments/assets/26dd50e8-8163-4762-a2b2-dc2fb1bdc167" />
 
 **Actions possibles :**
 - Visualiser les données en temps réel
@@ -187,15 +182,10 @@ Tech News Aggregator est un système automatisé qui collecte, analyse et prése
 - Voir les relations entre tables
 - Filtrer et rechercher
 
-**[📸 SCREENSHOT À AJOUTER ICI : Vue des articles avec colonnes]**
-*Emplacement : `screenshots/supabase-articles-view.png`*
 
 ---
 
 ### 📈 Statistiques en Temps Réel
-
-**[📸 SCREENSHOT À AJOUTER ICI : Vue SQL Editor avec requêtes statistiques]**
-*Emplacement : `screenshots/supabase-sql-stats.png`*
 
 **Requêtes utiles :**
 ```sql
@@ -221,8 +211,8 @@ ORDER BY article_count DESC;
 
 ### 🖥️ Interface CLI Principale
 
-**[📸 SCREENSHOT À AJOUTER ICI : Menu principal Rich avec bordures]**
-*Emplacement : `screenshots/cli-main-menu.png`*
+<img width="1504" height="1079" alt="image" src="https://github.com/user-attachments/assets/25f4146d-50c1-4c04-b812-387bddc80671" />
+
 
 ```bash
 ╔═════════════════════════════════════════╗
@@ -234,9 +224,6 @@ ORDER BY article_count DESC;
 ---
 
 ### 📂 Sélection des Sources
-
-**[📸 SCREENSHOT À AJOUTER ICI : Menu sélection des groupes de sources]**
-*Emplacement : `screenshots/cli-source-selection.png`*
 
 ```bash
 Select source groups to process:
@@ -259,8 +246,6 @@ Your selection: 1,3,8
 
 ### ⚙️ Configuration Articles par Source
 
-**[📸 SCREENSHOT À AJOUTER ICI : Menu configuration max articles]**
-*Emplacement : `screenshots/cli-max-articles-config.png`*
 
 ```bash
 Configure maximum articles per source:
@@ -273,8 +258,8 @@ Maximum articles per source [5/10/20/50] (10): 5
 
 ### 📊 Barre de Progression
 
-**[📸 SCREENSHOT À AJOUTER ICI : Progression pendant le traitement]**
-*Emplacement : `screenshots/cli-progress-bar.png`*
+<img width="1898" height="1017" alt="image" src="https://github.com/user-attachments/assets/059fd3ec-76dd-4f9e-ad65-c1e18e95b470" />
+
 
 ```bash
 ╭──────────────────────────────────────────────────────────────────╮
@@ -285,15 +270,11 @@ Maximum articles per source [5/10/20/50] (10): 5
 Fetching: https://www.reddit.com/r/MachineLearning/.json
 Analyzing: "New optimization technique for..."
 Filtering: [D] Self-Promotion Thread → FILTERED
-Storing: ✅ "GPT-4 for code generation..."
 ```
 
 ---
 
 ### 📈 Rapport Final de Traitement
-
-**[📸 SCREENSHOT À AJOUTER ICI : Tableau final Rich avec statistiques]**
-*Emplacement : `screenshots/cli-processing-results.png`*
 
 ```bash
 ╭───────────────────────┬─────────╮
@@ -428,9 +409,6 @@ Done! Check your dashboard at http://localhost:3000
 
 ### 📊 Consulter le Dashboard
 
-**[📸 SCREENSHOT À AJOUTER ICI : Dashboard avec nouveaux articles]**
-*Emplacement : `screenshots/dashboard-with-new-articles.png`*
-
 1. **Ouvrir** `http://localhost:3000`
 2. **Explorer** les articles par catégorie
 3. **Filtrer** par mots-clés
@@ -520,15 +498,5 @@ Tech-news-v2/
 
 ---
 
-## 📞 Support & Ressources
-
-- **Documentation complète** : [docs/](docs/)
-- **Guide architecture** : [docs/Architecture.md](docs/Architecture.md)
-- **Guide contribution** : [CONTRIBUTING.md](CONTRIBUTING.md)
-- **Issues GitHub** : Signaler bugs et demander des features
-
----
-
-**Made with ❤️ for developers by developers**
 
 *Tech News Aggregator v2.0 - Votre flux d'actualités tech intelligent*
