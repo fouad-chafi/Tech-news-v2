@@ -107,7 +107,17 @@ class LLMAnalyzer:
         categories_text = ", ".join(existing_categories) if existing_categories else "No existing categories"
 
         prompt = f"""
-Analyze this tech news article and provide a JSON response with the following structure:
+IMMEDIATE FILTER CHECK - BEFORE ANALYSIS:
+If ANY of these patterns appear in title or description, set should_filter = true IMMEDIATELY:
+- "[D] Self-Promotion Thread", "[D] Who's Hiring", "[D] Who wants to be Hired"
+- "[D] Monthly", "[D] Weekly", "[D] Daily Thread"
+- "Self-Promotion", "self promotion", "who's hiring", "job postings"
+- Title starts with "[D]" and contains "Thread", "Hiring", "Promotion"
+
+Title pattern check: {title.lower()}
+Description pattern check: {description[:200].lower() if description else ""}
+
+Now analyze this tech news article and provide a JSON response with the following structure:
 {{
     "categories": ["category1", "category2"],
     "relevance_score": 3,
@@ -166,6 +176,10 @@ Examples of CONTENT TO FILTER:
 - "Climate change effects on wildlife"
 - "Political election results"
 - "Celebrity gossip and entertainment news"
+- "[D] Self-Promotion Thread"
+- "[D] Who's Hiring and Who wants to be Hired?"
+- "Sunday Daily Thread: What's everyone working on this week?"
+- "[D] Monthly Meta Discussion Thread"
 
 Respond with JSON only, no additional text.
 """
